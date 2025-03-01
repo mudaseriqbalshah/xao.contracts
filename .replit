@@ -1,0 +1,158 @@
+modules = ["nodejs-20", "python-3.11"]
+
+[nix]
+channel = "stable-24_05"
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Truffle Development"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Truffle Deploy"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Truffle Tests"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Local Blockchain"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "React Development Server"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Production Frontend"
+
+[[workflows.workflow]]
+name = "Truffle Development"
+author = "agent"
+
+[workflows.workflow.metadata]
+agentRequireRestartOnSave = false
+
+[[workflows.workflow.tasks]]
+task = "packager.installForAll"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx truffle develop"
+
+[[workflows.workflow]]
+name = "Truffle Deploy"
+author = "agent"
+
+[workflows.workflow.metadata]
+agentRequireRestartOnSave = false
+
+[[workflows.workflow.tasks]]
+task = "packager.installForAll"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx truffle migrate --network development --reset"
+
+[[workflows.workflow]]
+name = "Truffle Tests"
+author = "agent"
+
+[workflows.workflow.metadata]
+agentRequireRestartOnSave = false
+
+[[workflows.workflow.tasks]]
+task = "packager.installForAll"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx truffle test"
+
+[[workflows.workflow]]
+name = "Local Blockchain"
+author = "agent"
+
+[workflows.workflow.metadata]
+agentRequireRestartOnSave = false
+
+[[workflows.workflow.tasks]]
+task = "packager.installForAll"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx ganache --host 0.0.0.0 --port 8545 --networkId 5777 --deterministic --chain.vmErrorsOnRPCResponse true"
+
+[[workflows.workflow]]
+name = "React Development Server"
+author = "agent"
+
+[workflows.workflow.metadata]
+agentRequireRestartOnSave = false
+
+[[workflows.workflow.tasks]]
+task = "packager.installForAll"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd frontend && PORT=5000 npm start"
+waitForPort = 5000
+
+[[workflows.workflow]]
+name = "Production Frontend"
+author = "agent"
+
+[workflows.workflow.metadata]
+agentRequireRestartOnSave = false
+
+[[workflows.workflow.tasks]]
+task = "packager.installForAll"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd frontend && echo \"=== Step 1: Cleaning existing installation ===\" && rm -rf node_modules package-lock.json && echo \"=== Step 2: Installing dependencies ===\" && npm install --legacy-peer-deps && echo \"=== Step 3: Building application ===\" && REACT_APP_RPC_URL=https://sepolia.base.org REACT_APP_CHAIN_ID=84532 npm run build && echo \"=== Step 4: Verifying build output ===\" && ls -la build/ && echo \"=== Step 5: Checking build contents ===\" && cat build/asset-manifest.json && echo \"=== Step 6: Starting production server ===\" && PORT=5000 npm run serve"
+waitForPort = 5000
+
+[deployment]
+run = ["sh", "-c", "node server.js"]
+build = ["sh", "-c", "cd frontend && npm install --legacy-peer-deps && REACT_APP_RPC_URL=https://sepolia.base.org REACT_APP_CHAIN_ID=84532 npm run build"]
+
+[[ports]]
+localPort = 3000
+externalPort = 3002
+
+[[ports]]
+localPort = 3001
+externalPort = 3003
+
+[[ports]]
+localPort = 3003
+externalPort = 4200
+
+[[ports]]
+localPort = 4200
+externalPort = 5000
+
+[[ports]]
+localPort = 5000
+externalPort = 80
+
+[[ports]]
+localPort = 5001
+externalPort = 5173
+
+[[ports]]
+localPort = 8545
+externalPort = 3001
+
+[[ports]]
+localPort = 9545
+externalPort = 3000

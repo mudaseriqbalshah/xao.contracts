@@ -1,0 +1,20 @@
+Deployer: 0xc426A5300dCd57D8E448DAEda6FA1b583f36604E
+XAO Token: 0xAca8714208D513A7Ab1Aca45AE1dF0708B90eb5f
+XAO Staking: 0x075426dDE2341d56E1b37edfa975d8AcA2c87CBD
+ArtistFactory: 0x98b474B4faf1ee5Afa166F751d8fe6834747051B
+EventFactory: 0xfF5D175141a4e6653ec4582E80df02df84D5aaa6
+EventExplorer: 0x0b7F6bcf4651D044395fcfE1e1C7D5529f2cB709
+
+  https://sepolia.basescan.org/address/0xAca8714208D513A7Ab1Aca45AE1dF0708B90eb5f#code
+  https://sepolia.basescan.org/address/0x075426dDE2341d56E1b37edfa975d8AcA2c87CBD#code
+https://sepolia.basescan.org/address/0x98b474B4faf1ee5Afa166F751d8fe6834747051B#code
+https://sepolia.basescan.org/address/0xfF5D175141a4e6653ec4582E80df02df84D5aaa6#code
+
+
+
+  XAO Token: 0x7C134B8E2de79C35bb4Ba71eeBd4A7Ec9B682752
+XAO Staking: 0x023800ee86f6cC3fcdf0c2dB65ea94eC0b7574b7
+ArtistFactory: 0x98b474B4faf1ee5Afa166F751d8fe6834747051B
+EventFactory: 0xBBF86e7C23b3306094337EA4BDE560D1D238087d
+EventExplorer: 0xD305909C629F2cb92255Fc22F7b9C1952bF8929c
+Event Creation Fee: 0.01 ETH

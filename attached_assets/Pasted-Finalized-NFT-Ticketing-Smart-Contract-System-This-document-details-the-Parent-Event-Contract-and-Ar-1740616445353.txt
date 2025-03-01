@@ -1,0 +1,191 @@
+Finalized NFT Ticketing Smart Contract System
+This document details the Parent Event Contract and Artist Contracts, incorporating all recent updates to ensure automated ticketing, payment security, dynamic pricing, artist accountability, and legal compliance.
+
+🛠 Parent Event Contract (Master Contract for the Event)
+The Parent Event Contract manages the entire event, including:
+NFT ticketing & pricing controls
+Escrowed payments & revenue splits
+Artist agreements, cancellations, and penalties
+Legal compliance & document attachments
+1️⃣ Key Data Fields
+Variable
+Description
+eventName
+Name of the event
+eventAddress
+Physical venue address
+venueName
+Name of the venue
+eventDate
+Date of the event
+eventStartTime
+Start time of the event
+eventEndTime
+End time of the event
+legalText
+Legal acknowledgment text stored on-chain
+additionalDetails
+Miscellaneous event details (security, accessibility, etc.)
+ticketSupply
+Total number of tickets minted
+ticketPrice
+Price per ticket (can be dynamic)
+dynamicPricingEnabled
+If true, ticket price increases as event nears
+priceIncreaseSchedule
+Array defining price changes by date or milestone
+totalRevenue
+Total ticket revenue collected
+escrowBalance
+Total funds held in escrow for artist payments
+minArtistsRequired
+Minimum number of artists for the event to proceed
+maxArtistsAllowed
+Maximum number of artists that can be added
+artistContracts
+Array of linked Artist Contracts
+approvedReplacements
+List of artists the venue can replace without approval
+penaltySchedule
+Increasing penalty percentages based on cancellation timeframes
+offChainRiderHash
+Cryptographic hash of the off-chain contract rider document
+
+
+2️⃣ Parent Contract Functions
+Function
+Description
+setEventDetails(...)
+Sets event name, address, venue, dates, times, and legal text
+setTicketingDetails(...)
+Defines total ticket supply, base price, and pricing method
+enableDynamicPricing(bool status)
+Enables or disables price increases over time
+setPriceScale(...)
+Sets gradual price increase parameters
+setPriceSchedule(...)
+Defines specific ticket price changes by date
+mintTickets(...)
+Mints NFT tickets to be sold
+trackArtistSale(...)
+Tracks artist-sold ticket revenue
+setArtistRevenueSplit(...)
+Defines independent profit split for artists selling tickets
+depositGuarantee(...)
+Venue deposits artist payment guarantees into escrow
+setPaymentSchedule(...)
+Defines artist payout conditions (e.g., date-based, ticket-based)
+replaceArtist(...)
+Allows artist replacements based on venue or approval rules
+artistCancels(...)
+Applies increasing penalties and redistributes funds
+venueCancels()
+Cancels the event and refunds ticket holders
+finalizeEvent()
+Distributes final payments to artists and venue after successful event
+processRefunds()
+Issues refunds if required artists cancel without replacements
+
+✅ Ensures clear ticketing, payment handling, and venue/artist relationships.
+ ✅ Allows price increases for late buyers while keeping artist revenue fair.
+ ✅ Enforces legal text and immutability for contract riders.
+
+🎤 Artist Contracts (Subservient Agreements for Performers)
+Each Artist Contract is an independent agreement governing artist obligations, payments, and penalties.
+1️⃣ Key Data Fields
+Variable
+Description
+artist
+Address of the artist
+parentContract
+Address of the Parent Event Contract
+eventAddress
+Physical address of the event
+venueName
+Name of the venue
+loadInTime
+Scheduled time for artist load-in
+setTime
+Time artist is scheduled to perform
+rider
+Off-chain rider document reference
+legalText
+Legal acknowledgment text related to the artist contract
+guaranteeAmount
+Fixed amount the artist is guaranteed to be paid
+revenueShare
+Percentage of ticket sales allocated to the artist
+depositAmount
+Optional deposit required from the artist (for large artists)
+penaltySchedule
+Increasing penalties for late cancellations
+approvalRequired
+Whether the venue can replace the artist without external approval
+isCancelled
+Tracks if the artist cancels
+
+
+2️⃣ Artist Contract Functions
+Function
+Description
+setArtistDetails(...)
+Sets event address, venue name, load-in time, set time, rider, and legal text
+signContract()
+Artist confirms agreement and legal binding terms
+setDepositRequirement(...)
+Requires deposit staking for high-profile artists
+withdrawDeposit()
+Allows artist to reclaim their deposit after performing
+receivePayment()
+Artist receives escrowed funds post-event
+artistCancels()
+Applies penalties and triggers refund or redistribution logic
+replaceArtist(...)
+Handles artist replacement conditions
+finalizeArtistAgreement()
+Confirms event completion and triggers final payouts
+
+✅ Ensures each artist's contract is independent but linked to the main event.
+ ✅ Handles performance obligations, payment schedules, and cancellations.
+ ✅ Allows off-chain storage for cost savings while keeping legal commitments secure.
+
+🚀 Final Summary of Features
+✅ Parent Event Contract
+Handles all ticketing, artist payments, and event finances.
+Supports dynamic ticket pricing and independent artist sales tracking.
+Enforces penalties and refunds for artist cancellations.
+Links off-chain riders securely while keeping agreements immutable.
+✅ Artist Contracts
+Each artist agreement is a separate, enforceable contract.
+Defines payment guarantees, revenue splits, and performance logistics.
+Applies increasing penalties for late cancellations.
+Supports optional artist deposits for commitment enforcement.
+This system ensures transparency, legal compliance, and automation, making event ticketing, payments, and artist contracts fully decentralized and enforceable. 🚀🎟️
+
+🛠 Next Steps
+1️⃣ Do you want an optional dispute mechanism for artist cancellations or performance issues in the future?
+ 2️⃣ Should we allow event organizers to define a “cut-off” time after which no changes (e.g., replacements, refunds) can be made?
+ 3️⃣ Would you like a public event explorer that allows fans to see artist lineups, ticket pricing, and event status transparently?
+Let me know if we need any final refinements before locking in this contract structure! 🎤🔥
+
+Summary of Key Features
+✅ Event Contract (Parent) Handles:
+NFT Ticketing (minting, sales, resale)
+Escrowed artist payments & milestone-based revenue boosts
+Automated refund processing for artist cancellations
+Dynamic pricing for ticket sales (if enabled)
+Transparent real-time ticket tracking
+Locked milestone rewards (no changes after signing)
+✅ Artist Contract Handles:
+Individual agreement terms & guarantees
+Revenue share adjustments based on performance
+Artist ticket sales tracking & payout automation
+Milestone bonuses & refund-based adjustments
+Performance obligations & set times
+✅ System Enhancements Include:
+On-chain wallet notifications for artists
+Real-time ticket sales tracking
+Automated revenue adjustment & enforcement
+Customizable per-artist bonus thresholds & caps
+Immutable revenue milestones once signed
+

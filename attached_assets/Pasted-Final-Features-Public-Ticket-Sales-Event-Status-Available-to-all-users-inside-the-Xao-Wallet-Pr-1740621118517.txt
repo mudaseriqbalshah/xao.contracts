@@ -1,0 +1,58 @@
+Final Features
+Public Ticket Sales & Event Status → Available to all users inside the Xao Wallet.
+Private Financial Data for Artists & Venues → Automatically retrieved & displayed in their wallet UI.
+No Login System → Event participants access their event data through their wallet holdings.
+Real-Time Data Sync with Smart Contracts → Information always matches on-chain records.
+
+1️⃣ Final Variables in the Event Explorer Contract
+Variable
+Description
+eventContracts
+List of all Parent Event Contracts available for public view
+artistContracts
+List of linked Artist Contracts for each event
+eventStatus
+Current status of the event (Upcoming, Ongoing, Completed, Canceled)
+ticketAvailability
+Tracks total tickets and remaining availability per event
+currentTicketPrice
+Displays the active ticket price (reflecting dynamic pricing if enabled)
+artistLineup
+List of artists performing at each event
+artistStatus
+Tracks artist status (Confirmed, Replaced, Canceled)
+artistTicketSales
+Public real-time tracking of ticket sales per artist (financial data excluded)
+privateEventData
+Mapping of event-specific private data (accessible in the artist/venue wallet interface)
+
+
+2️⃣ Final Functions in the Event Explorer Contract
+Function
+Description
+getAllEvents()
+Returns all upcoming and active events
+getEventDetails(address eventContract)
+Fetches venue name, date, address, start/end time, and artist lineup for a given event
+getTicketAvailability(address eventContract)
+Returns total tickets, tickets sold, and remaining availability
+getCurrentTicketPrice(address eventContract)
+Displays the live ticket price (if dynamic pricing is enabled)
+getArtistLineup(address eventContract)
+Returns all scheduled artists and their status
+getArtistDetails(address artistContract)
+Fetches performance time and replacement status for a given artist
+getEventStatus(address eventContract)
+Returns event status (e.g., Upcoming, Ongoing, Completed, Canceled)
+getArtistTicketSales(address artistContract)
+Public function returning real-time ticket sales for an artist (financial data hidden)
+getPrivateEventData(address eventContract, address user)
+Wallet-based access allowing only the venue or artist to view private event details directly in their Xao Wallet UI
+
+
+3️⃣ How Wallet-Based Access Works
+The Xao Wallet automatically detects when a user (artist/venue) holds a contract-linked asset (e.g., event NFTs, payment guarantees).
+Relevant private event details (financials, milestones, payouts) are displayed inside their wallet dashboard.
+Regular users only see public data (ticket sales, event lineup) inside the wallet's explorer section.
+No login required—wallet holdings dictate access rights.
+

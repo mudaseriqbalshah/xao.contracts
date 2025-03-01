@@ -1,0 +1,17 @@
+.env*
+!.env.example
+node_modules
+.idea
+*.DS_Store
+build
+yarn.lock
+package-lock.#[derive(Clone, Debug, AnchorSerialize, AnchorDeserialize)]
+pub enum SwapAction {
+  SetupSplit { percents: Vec<u8> },
+  NextSplitLeg,
+  MergeSplit,
+  Swap { swap: Swap },
+}
+bot/input
+bot/output
+cache

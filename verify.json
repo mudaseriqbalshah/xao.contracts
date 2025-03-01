@@ -1,0 +1,15 @@
+{
+  "apikey": "17EM3GTF7UXCJGDAJP8UIYVTXHQGHEI5UN",
+  "module": "contract",
+  "action": "verifysourcecode",
+  "sourceCode": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.19;\n\nimport \"@openzeppelin/contracts/token/ERC20/ERC20.sol\";\n\ncontract XAOToken is ERC20 {\n    uint256 private constant INITIAL_SUPPLY = 100_000_000 * 10**18; // 100 million tokens\n\n    constructor() ERC20(\"XAO Protocol\", \"XAO\") {\n        _mint(msg.sender, INITIAL_SUPPLY);\n    }\n}",
+  "contractaddress": "0x0152F9363Bb640520525993016aDc13B67890335",
+  "codeformat": "solidity-single-file",
+  "contractname": "XAOToken",
+  "compilerversion": "v0.8.19",
+  "optimizationUsed": 1,
+  "runs": 200,
+  "constructorArguments": "",
+  "evmversion": "paris",
+  "licenseType": 3
+}
