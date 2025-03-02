@@ -209,34 +209,34 @@ Campaign management and AI-driven dispute resolution.
                                     │  Deployment  │
                                     └──────┬───────┘
                     ┌───────────────────┬──┴────┬───────────────┐
-            ┌───────┴──────┐    ┌──────┴───┐   └────┐    ┌─────┴─────┐
-            │  XAO Token   │    │Governance│        │    │  Treasury  │
-            └──────────────┘    └──────────┘        │    └───────────┘
-                                                    │
-                                            ┌───────┴──────┐
-                                            │   Factory    │
-                                            │  Contracts   │
-                                            └──────┬───────┘
-                                        ┌─────────┴────────┐
-                                  ┌─────┴─────┐      ┌─────┴─────┐
-                                  │   Event   │      │   Artist  │
-                                  │  Factory  │      │  Factory  │
-                                  └───────────┘      └───────────┘
+            ┌───────┴──────┐    ┌──────┴───┐    └────┐    ┌─────┴─────┐
+            │  XAO Token   │    │Governance│         │    │  Treasury │
+            └──────────────┘    └──────────┘         │    └───────────┘
+                                                     │
+                                             ┌───────┴──────┐
+                                             │   Factory    │
+                                             │  Contracts   │
+                                             └──────┬───────┘
+                                         ┌─────────┴────────┐
+                                   ┌─────┴─────┐      ┌─────┴─────┐
+                                   │   Event   │      │   Artist  │
+                                   │  Factory  │      │  Factory  │
+                                   └───────────┘      └───────────┘
 ```
 The deployment flow shows the hierarchical relationship between core system contracts. The XAO Token, Governance, and Treasury contracts form the foundation, while factory contracts enable the creation of event and artist instances.
 
 ### 2. Event Creation Flow
 ```
 ┌─────────┐     ┌───────────────┐     ┌─────────────────┐
-│  Owner  │────▶│ Event Factory │────▶│ Parent Event    │
+│  Owner  │────▶│ Event Factory │────▶  Parent Event   │
 └─────────┘     └───────┬───────┘     └────────┬────────┘
-                        │                       │
-                        │                       ▼
+                        │                      │
+                        │                      ▼
                         │             ┌─────────────────┐
                         │             │  Event Explorer │
                         │             └────────┬────────┘
                         ▼                      │
-              ┌─────────────────┐             │
+              ┌─────────────────┐              │
               │ Artist Factory  │◀────────────┘
               └───────┬─────────┘
                       │
@@ -250,7 +250,7 @@ When creating a new event, the owner initiates the process through the Event Fac
 ### 3. Ticket Sales Flow
 ```
 ┌──────────┐    ┌────────────────┐    ┌───────────────┐
-│  Buyer   │───▶│ Parent Event   │───▶│ ERC1155/721   │
+│  Buyer   │───▶│ Parent Event   │───▶  ERC1155/721  │
 └──────────┘    │   Contract     │    │  Ticket NFT   │
                 └────────┬───────┘    └───────┬───────┘
                         │                     │
@@ -263,15 +263,15 @@ The ticket sales process starts with a buyer interacting with the Parent Event c
 
 ### 4. Revenue Distribution Flow
 ```
-┌────────────────┐    ┌────────────────┐    ┌───────────────┐
-│  Ticket Sale   │───▶│ Parent Event   │───▶│ XAO Treasury  │
-└────────────────┘    │   Contract     │    └───────┬───────┘
-                      └────────┬───────┘            │
-                              │                     ▼
+┌────────────────┐    ┌────────────────┐     ┌───────────────┐
+│  Ticket Sale   │───▶│ Parent Event   │───▶   XAO Treasury │
+└────────────────┘    │   Contract     │     └───────┬───────┘
+                      └────────┬───────┘             │
+                               │                     ▼
                               ▼               ┌───────────────┐
-                      ┌────────────────┐     │Artist Contract│
-                      │Revenue Splitter│────▶│    Escrow     │
-                      └────────────────┘     └───────────────┘
+                      ┌────────────────┐      │Artist Contract│
+                      │Revenue Splitter│────▶     Escrow     │
+                      └────────────────┘      └───────────────┘
 ```
 After a ticket sale, the revenue flows through the Parent Event contract to the XAO Treasury. The Revenue Splitter then distributes the funds according to predefined shares, with artist payments held in escrow until performance obligations are met.
 
