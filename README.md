@@ -236,14 +236,14 @@ The deployment flow shows the hierarchical relationship between core system cont
                         │             │  Event Explorer │
                         │             └────────┬────────┘
                         ▼                      │
-              ┌─────────────────┐              │
-              │ Artist Factory  │◀────────────┘
-              └───────┬─────────┘
+       ┌────────────────────────┐              │
+       │ Vendor/Artist Factory  │◀────────────┘
+       └──────────────┬─────────┘
                       │
                       ▼
-              ┌─────────────────┐
-              │Artist Contract  │
-              └─────────────────┘
+      ┌────────────────────────┐
+      │ Vendor/Artist Contract │
+      └────────────────────────┘
 ```
 When creating a new event, the owner initiates the process through the Event Factory, which deploys a new Parent Event contract. The Event Explorer tracks this new event, and the Artist Factory creates associated artist contracts based on the event requirements.
 
