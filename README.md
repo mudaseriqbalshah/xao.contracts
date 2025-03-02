@@ -275,6 +275,59 @@ The ticket sales process starts with a buyer interacting with the Parent Event c
 ```
 After a ticket sale, the revenue flows through the Parent Event contract to the XAO Treasury. The Revenue Splitter then distributes the funds according to predefined shares, with artist payments held in escrow until performance obligations are met.
 
+### 5. Arbitration Flow
+```
+┌──────────┐     ┌────────────────┐     ┌─────────────────┐
+│Campaign  │────▶│   Dispute      │────▶│  Evidence       │
+│Owner     │     │   Filing       │     │  Submission     │
+└──────────┘     └────────────────┘     └────────┬────────┘
+                                                 │
+                                                 ▼
+┌──────────┐     ┌────────────────┐     ┌───────────────┐
+│  Appeal  │◀────│ AI Decision    │◀────│ IPFS Evidence │
+│  Period  │     │ Generation     │     │   Storage     │
+└────┬─────┘     └────────────────┘     └───────────────┘
+     │
+     │           ┌────────────────┐     ┌───────────────┐
+     └──────────▶│    Final       │────▶│    Payout     │
+                 │  Resolution    │     │   Execution    │
+                 └────────────────┘     └───────────────┘
+```
+The arbitration flow illustrates the dispute resolution process in the XAOMarketing contract. Campaign owners can file disputes, submit evidence (stored in IPFS), and receive AI-generated decisions. The process includes an appeal period, followed by final resolution and payout execution. All stages are time-bound and include multiple security checks.
+
+### Arbitration Process Details
+
+#### 1. Dispute Filing
+- Campaign owner initiates dispute through `requestPayout` function
+- System validates campaign status and requested amount
+- Creates new dispute record with unique ID
+- Enforces cooling period between payout requests
+
+#### 2. Evidence Submission
+- 5-day evidence submission period
+- Evidence stored as IPFS hashes for immutability
+- Only one complete evidence submission allowed
+- Verification of evidence completion status
+
+#### 3. AI Decision
+- Oracle-based AI decision generation
+- Decision stored as IPFS hash
+- Includes approved amount calculation
+- Multiple validation checks on decision integrity
+
+#### 4. Appeal Process
+- 2-day appeal window after AI decision
+- Single appeal allowed per dispute
+- Requires additional evidence submission
+- Automated deadline enforcement
+
+#### 5. Resolution and Payout
+- Automatic execution after appeal period
+- Validated payment processing
+- Updates campaign and dispute status
+- Final state verification
+
+
 ## Contract Upgrade Patterns
 
 ### Security Considerations
