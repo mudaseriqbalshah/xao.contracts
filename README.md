@@ -290,7 +290,7 @@ After a ticket sale, the revenue flows through the Parent Event contract to the 
      │
      │           ┌────────────────┐     ┌───────────────┐
      └──────────▶│    Final       │────▶│    Payout     │
-                 │  Resolution    │     │   Execution    │
+                 │  Resolution    │     │   Execution   │
                  └────────────────┘     └───────────────┘
 ```
 The arbitration flow illustrates the dispute resolution process in the XAOMarketing contract. Campaign owners can file disputes, submit evidence (stored in IPFS), and receive AI-generated decisions. The process includes an appeal period, followed by final resolution and payout execution. All stages are time-bound and include multiple security checks.
