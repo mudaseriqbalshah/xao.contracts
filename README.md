@@ -253,8 +253,8 @@ When creating a new event, the owner initiates the process through the Event Fac
 │  Buyer   │───▶│ Parent Event   │───▶  ERC1155/721  │
 └──────────┘    │   Contract     │    │  Ticket NFT   │
                 └────────┬───────┘    └───────┬───────┘
-                        │                     │
-                        ▼                     ▼
+                         │                    │
+                         ▼                    ▼
                 ┌────────────────┐    ┌───────────────┐
                 │ Event Explorer │    │  XAO Token    │
                 └────────────────┘    └───────────────┘
@@ -278,18 +278,18 @@ After a ticket sale, the revenue flows through the Parent Event contract to the 
 ### 5. Arbitration Flow
 ```
 ┌──────────┐     ┌────────────────┐     ┌─────────────────┐
-│Campaign  │────▶│   Dispute      │────▶│  Evidence       │
+│Campaign  │────▶│   Dispute      │────▶│  Evidence      │
 │Owner     │     │   Filing       │     │  Submission     │
 └──────────┘     └────────────────┘     └────────┬────────┘
                                                  │
                                                  ▼
 ┌──────────┐     ┌────────────────┐     ┌───────────────┐
-│  Appeal  │◀────│ AI Decision    │◀────│ IPFS Evidence │
+│  Appeal  │◀────│ AI Decision    │◀────│IPFS Evidence │
 │  Period  │     │ Generation     │     │   Storage     │
 └────┬─────┘     └────────────────┘     └───────────────┘
      │
      │           ┌────────────────┐     ┌───────────────┐
-     └──────────▶│    Final       │────▶│    Payout     │
+     └──────────▶│    Final       │────▶│   Payout     │
                  │  Resolution    │     │   Execution   │
                  └────────────────┘     └───────────────┘
 ```
